@@ -1,0 +1,103 @@
+{
+	"name": "autolaunch",
+	"displayName": "AutoLaunch",
+	"description": "Automatically run tasks in tasks.json or launch config in launch.json",
+	"version": "2.1.2",
+	"keywords": [
+		"auto",
+		"run",
+		"launch",
+		"tasks",
+		"debug"
+	],
+	"icon": "logo/AutoLaunch128.png",
+	"galleryBanner": {
+		"color": "#add8e6",
+		"theme": "light"
+	},
+	"homepage": "https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch",
+	"bugs": {
+		"url": "https://github.com/philfontaine/autolaunch/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/philfontaine/autolaunch.git"
+	},
+	"publisher": "philfontaine",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.54.0"
+	},
+	"categories": [
+		"Other",
+		"Debuggers"
+	],
+	"activationEvents": [
+		"workspaceContains:.vscode/tasks.json",
+		"workspaceContains:.vscode/launch.json",
+		"onStartupFinished"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"jsonValidation": [
+			{
+				"fileMatch": "/.vscode/tasks.json",
+				"url": "./custom-tasks-schema.json"
+			},
+			{
+				"fileMatch": "**/Code/User/tasks.json",
+				"url": "./custom-tasks-schema.json"
+			},
+			{
+				"fileMatch": "/.vscode/launch.json",
+				"url": "./custom-launch-schema.json"
+			}
+		],
+		"configuration": [
+			{
+				"type": "object",
+				"title": "AutoLaunch configuration",
+				"properties": {
+					"autolaunch.mode": {
+						"type": "string",
+						"default": "auto",
+						"enum": [
+							"auto",
+							"prompt",
+							"disabled"
+						],
+						"description": "AutoLaunch mode. Can be:\n  - 'auto': Automatically run tasks and launch configurations\n  - 'prompt': User will be prompted before AutoLaunching.\n  - 'disabled': Same as disabling the extension."
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint src --ext ts"
+	},
+	"dependencies": {
+		"json5": "2.2.1"
+	},
+	"devDependencies": {
+		"@types/node": "17.0.23",
+		"eslint": "8.12.0",
+		"@types/vscode": "1.54.0",
+		"@typescript-eslint/eslint-plugin": "5.17.0",
+		"@typescript-eslint/parser": "5.17.0",
+		"typescript": "4.6.3"
+	},
+	"__metadata": {
+		"id": "22e42574-ad66-4410-b54c-1bccff5d7014",
+		"publisherId": "f7fa3db7-18ef-4cf5-a385-ef3b4f47d170",
+		"publisherDisplayName": "philfontaine",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1664891870293
+	}
+}

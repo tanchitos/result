@@ -1,0 +1,6 @@
+[user]
+	email = tanchitos91@gmail.com
+	name = tanchitos
+[core]
+	autocrlf = input
+	excludesFile = C:/Users/garryexe/.gitignore
